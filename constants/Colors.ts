@@ -1,3 +1,4 @@
+import defcolor from "./defcolor";
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
 

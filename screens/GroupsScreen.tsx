@@ -5,7 +5,7 @@ import { RootTabScreenProps } from '../types';
 import ChatRoomItem from '../components/ChatRoomItem';
 import chatRoomsData from '../assets/dummy-data/ChatRooms';
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function GroupScreen() {
   return (
     <View style={styles.page}>
        <FlatList 

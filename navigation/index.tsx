@@ -3,21 +3,37 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons';
+import { Feather, FontAwesome, Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
+import CallHeader from '../components/CallHeader/CallHeader';
+import ChatRoomHeader from '../components/ChatHeader/ChatHeader';
+import FeedsHeader from '../components/FeedsHeader/FeedsHeader';
+import GroupHeader from '../components/GroupHeader/GroupHeader'
+import HomeHeader from '../components/HomeHeader/HomeHeader';
 
 import Colors from '../constants/Colors';
+import defcolor from '../constants/defcolor';
+
 import useColorScheme from '../hooks/useColorScheme';
+import AuthScreen from '../screens/SignUpScreen';
+import CallScreen from '../screens/CallScreen';
+import ChatRoomScreen from '../screens/ChatRoomScreen';
+import ContactScreen from '../screens/ContactScreen';
+import DoneScreen from '../screens/DoneScreen';
+import GetStartedScreen from '../screens/GetStartedScreen';
+import GroupsScreen from '../screens/GroupsScreen';
 import ModalScreen from '../screens/ModalScreen';
-import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import SignUpScreen from '../screens/SignUpScreen';
+import SignInScreen from '../screens/SignInScreen';
+import ConfirmScreen from '../screens/Confirm';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -38,8 +54,25 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen name="GetStarted" component={GetStartedScreen} options={{ headerShown: false,}}/>1
+      {/* <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false,}}/> */}
+      {/* <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false,}}/> */}
+      {/* <Stack.Screen name="Confirm" component={ConfirmScreen} options={{ headerShown: false,}}/> */}
+      <Stack.Screen name="Done" component={DoneScreen} options={{ headerShown: false,}}/>
+      <Stack.Screen name="Root" component={BottomTabNavigator} options={{headerShown: false}}/>
+      <Stack.Screen name="Calls" component={CallScreen} options={{ headerShown: false,}}/>
+      <Stack.Screen name="Contacts" component={ContactScreen}/>
+      <Stack.Screen 
+        name="ChatRoom" 
+        component={ChatRoomScreen}        
+        options={({ route }) => ({
+          title: route.title,
+          headerTitle: ChatRoomHeader, 
+          headerBackTitleVisible: false,
+        })} 
+      /> 
+      <Stack.Screen name="Groups" component={TopTabNavigator} options={{ headerShown: false,}} />
+      <Stack.Screen name="Call" component={myTabNavigator} options={{ headerShown: false,}} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
@@ -58,41 +91,138 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}>
+    initialRouteName="Chats"
+    >
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-        })}
+        name="Camera"
+        component={ModalScreen}
+        options={{
+          tabBarIcon: ({ color }) => 
+          <Feather name="camera" size={30} color= {defcolor} 
+          style={{ marginHorizontal: 10}} />,
+        }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Chats"
+        component={TabOneScreen}
+        options={{
+          headerTitle: HomeHeader,
+          headerStyle: {
+            height: 150, // Specify the height of your custom header
+            elevation: 0, // remove shadow on Android
+            shadowOpacity: 0, // remove shadow on iOS
+          },
+          tabBarIcon: ({ color }) => 
+          <Ionicons name="chatbubble-outline" size={30} color={defcolor} />,
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Status"
         component={TabTwoScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerTitle: FeedsHeader,
+          headerStyle: {
+            height: 100, // Specify the height of your custom header
+            elevation: 0, // remove shadow on Android
+            shadowOpacity: 0, // remove shadow on iOS
+          },
+          tabBarIcon: ({ color }) =>
+          <FontAwesome name="dot-circle-o" size={30} color={defcolor} />,
         }}
       />
     </BottomTab.Navigator>
+  );
+}
+const myTab = createBottomTabNavigator<RootTabParamList>();
+
+function myTabNavigator() {
+  const colorScheme = useColorScheme();
+
+  return (
+    <myTab.Navigator
+    initialRouteName="Chats"
+    >
+      <myTab.Screen
+        name="Camera"
+        component={ModalScreen}
+        options={{
+          tabBarIcon: ({ color }) => 
+          <Feather name="camera" size={30} color= {defcolor} 
+          style={{ marginHorizontal: 10}} />,
+        }}
+      />
+      <myTab.Screen
+        name="Chats"
+        component={CallScreen}
+        options={{
+          headerTitle: CallHeader,
+          headerStyle: {
+            height: 150, // Specify the height of your custom header
+            elevation: 0, // remove shadow on Android
+            shadowOpacity: 0, // remove shadow on iOS
+          },
+          tabBarIcon: ({ color }) => 
+          <Ionicons name="chatbubble-outline" size={30} color={defcolor} />,
+        }}
+      />
+
+      <myTab.Screen
+        name="Status"
+        component={TabTwoScreen}
+        options={{
+          tabBarIcon: ({ color }) =>
+          <FontAwesome name="dot-circle-o" size={30} color={defcolor} />,
+        }}
+      />
+
+    </myTab.Navigator>
+  );
+}
+
+const TopTab = createBottomTabNavigator<RootTabParamList>();
+
+function TopTabNavigator() {
+  const colorScheme = useColorScheme();
+
+  return (
+    <TopTab.Navigator
+    initialRouteName="Chats"
+    >
+      <TopTab.Screen
+        name="Camera"
+        component={ModalScreen}
+        options={{
+          tabBarIcon: ({ color }) => 
+          <Feather name="camera" size={30} color= {defcolor} 
+          style={{ marginHorizontal: 10}} />,
+        }}
+      />
+      <TopTab.Screen
+        name="Chats"
+        component={GroupsScreen}
+        options={{
+          headerTitle: GroupHeader,
+          headerStyle: {
+            height: 150, // Specify the height of your custom header
+            elevation: 0, // remove shadow on Android
+            shadowOpacity: 0, // remove shadow on iOS
+          },
+          tabBarIcon: ({ color }) => 
+          <Ionicons name="chatbubble-outline" size={30} color={defcolor} />,
+        }}
+      />
+
+      <TopTab.Screen
+        name="Status"
+        component={TabTwoScreen}
+        options={{
+          tabBarIcon: ({ color }) =>
+          <FontAwesome name="dot-circle-o" size={30} color={defcolor} />,
+        }}
+      />
+
+    </TopTab.Navigator>
   );
 }
 

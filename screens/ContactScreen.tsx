@@ -1,16 +1,22 @@
 import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
-import ChatRoomItem from '../components/ChatRoomItem';
 import chatRoomsData from '../assets/dummy-data/ChatRooms';
+import ContactItem from '../components/ContactItem/ContactItem';
+import { useNavigation } from '@react-navigation/native';
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function ContactScreen(){
+    const navigation = useNavigation();
+  
+    // console.log(route.params)
+
+    console.warn("Displaying contact list")
+    
   return (
     <View style={styles.page}>
        <FlatList 
         data={chatRoomsData}
-        renderItem={({ item }) => <ChatRoomItem chatRoom={item} />}
+        renderItem={({ item }) => <ContactItem contacts={item} />}
         showsVerticalScrollIndicator={false}
       />
     </View>
