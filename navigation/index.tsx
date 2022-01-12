@@ -14,12 +14,9 @@ import ChatRoomHeader from '../components/ChatHeader/ChatHeader';
 import FeedsHeader from '../components/FeedsHeader/FeedsHeader';
 import GroupHeader from '../components/GroupHeader/GroupHeader'
 import HomeHeader from '../components/HomeHeader/HomeHeader';
-
-import Colors from '../constants/Colors';
 import defcolor from '../constants/defcolor';
 
 import useColorScheme from '../hooks/useColorScheme';
-import AuthScreen from '../screens/SignUpScreen';
 import CallScreen from '../screens/CallScreen';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import ContactScreen from '../screens/ContactScreen';
@@ -54,10 +51,10 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="GetStarted" component={GetStartedScreen} options={{ headerShown: false,}}/>1
-      {/* <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false,}}/> */}
-      {/* <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false,}}/> */}
-      {/* <Stack.Screen name="Confirm" component={ConfirmScreen} options={{ headerShown: false,}}/> */}
+      <Stack.Screen name="GetStarted" component={GetStartedScreen} options={{ headerShown: false,}}/>
+      <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false,}}/>
+      <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false,}}/>
+      <Stack.Screen name="Confirm" component={ConfirmScreen} options={{ headerShown: false,}}/>
       <Stack.Screen name="Done" component={DoneScreen} options={{ headerShown: false,}}/>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{headerShown: false}}/>
       <Stack.Screen name="Calls" component={CallScreen} options={{ headerShown: false,}}/>
