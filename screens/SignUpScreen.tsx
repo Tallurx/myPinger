@@ -98,7 +98,7 @@ const AuthScreen = () => {
         />
 
         <Text style={styles.text4}>
-          Your will receive a verification {"\n"} code to this mobile number.
+          Your will receive a verification code to this mobile number.
         </Text>
       </View>
       <View style={styles.buttonContainer}>
@@ -119,15 +119,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   layout: {
+    marginTop: 20,
     justifyContent: "center",
   },
   layout2: {
-    alignItems: "center",
+    marginBottom: 15,
+    // alignItems: "center",
     justifyContent: "center",
   },
-  icon: {
-    marginLeft: 60,
-  },
+  // icon: {
+  //   marginLeft: 0,
+  // },
   emailcontainer: {
     flexDirection: "row",
     shadowOpacity: 10,
@@ -196,13 +198,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 25,
-    height: 50,
-    width: 250,
+    height: 40,
+    width: 320,
   },
   text1: {
     color: "white",
     fontWeight: "bold",
-    fontSize: 30,
+    fontSize: 25,
   },
   text2: {
     color: "lightgrey",
@@ -216,7 +218,7 @@ const styles = StyleSheet.create({
   text3: {
     color: defcolor,
     fontWeight: "bold",
-    fontSize: 25,
+    fontSize: 20,
   },
   text4: {
     fontWeight: "bold",

@@ -41,7 +41,6 @@ const SignIn = () => {
         <Text style={styles.text1}>Login to Pingr</Text>
       </View>
       <View style={{ alignItems: "center", flex: 1 }}>
-
         <PhoneInput
           placeholder=" Enter your mobile number"
           ref={phoneInput}
@@ -77,12 +76,23 @@ const SignIn = () => {
         </View>
 
         <Text style={styles.text4}>
-          Your will receive a verification {"\n"} code to this mobile number.
+          Your will receive a verification code to this mobile number.
         </Text>
+        <View style={styles.buttonContainer2}>
+          <TouchableOpacity style={styles.button2} onPress={onPress}>
+            <Text style={styles.text3i} elevation={5}>
+              Forgot Password?
+            </Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
+
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={onPress}>
-          <Text style={styles.text3} elevation={5}>Send Verification</Text>
+          <Text style={styles.text3} elevation={5}>
+            Send Verification
+          </Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -98,14 +108,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   layout: {
+    marginTop: 20,
     justifyContent: "center",
   },
   layout2: {
-    alignItems: "center",
+    marginBottom: 15,
+    // alignItems: "center",
     justifyContent: "center",
   },
   icon: {
-    marginLeft: 60,
+    // marginLeft: 60,
   },
   emailcontainer: {
     flexDirection: "row",
@@ -166,22 +178,34 @@ const styles = StyleSheet.create({
     borderColor: defcolor,
     marginTop: 20,
   },
+  buttonContainer2: {
+    marginTop: 10,
+    marginLeft: '68%',
+  },
   buttonContainer: {
     alignItems: "center",
     marginBottom: 20,
+  },
+  button2: {
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 25,
+    height: 30,
+    width: 105,
   },
   button: {
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 25,
-    height: 50,
-    width: 250,
+    height: 40,
+    width: 320,
   },
   text1: {
     color: "white",
     fontWeight: "bold",
-    fontSize: 30,
+    fontSize: 25,
   },
   text2: {
     color: "lightgrey",
@@ -192,10 +216,15 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     fontSize: 20,
   },
+  text3i: {
+    color: defcolor,
+    fontWeight: "bold",
+    fontSize: 12,
+  },
   text3: {
     color: defcolor,
     fontWeight: "bold",
-    fontSize: 25,
+    fontSize: 20,
   },
   text4: {
     fontWeight: "bold",

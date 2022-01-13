@@ -51,9 +51,9 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="GetStarted" component={GetStartedScreen} options={{ headerShown: false,}}/>
+      {/* <Stack.Screen name="GetStarted" component={GetStartedScreen} options={{ headerShown: false,}}/>
       <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false,}}/>
-      <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false,}}/>
+      <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false,}}/> */}
       <Stack.Screen name="Confirm" component={ConfirmScreen} options={{ headerShown: false,}}/>
       <Stack.Screen name="Done" component={DoneScreen} options={{ headerShown: false,}}/>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{headerShown: false}}/>

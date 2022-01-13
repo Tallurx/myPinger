@@ -14,7 +14,7 @@ const Message = ({ message }) => {
 
   return (
     <View style={[styles.container, isMe ? styles.rightContainer : styles.leftContainer]}>
-      {!isMe && <Text style={[styles.name, { color: isMe ? 'white' : defcolor}]}>{message.user.name}</Text>}
+      {/* {!isMe && <Text style={[styles.name, { color: isMe ? 'white' : defcolor}]}></Text>} */}
       <View>
         <Text style={{ color: isMe ? 'white' : 'black'}}>{message.content}</Text>      
         <Text style={[styles.time, { color: isMe ? 'white' : 'black'}]}>{moment(message.createdAt).format('LT')}</Text>            
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   name: {
-    fontWeight: 'bold',
-    marginBottom: 3,
+    // fontWeight: 'bold',
+    // marginBottom: 3,
   },
   time: {
     textAlign: 'right',

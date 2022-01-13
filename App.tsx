@@ -9,61 +9,61 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 
-const DarkTheme = {
-  dark: true,
-  colors: {
-    primary: '#50E3C2',
-    background: '#1D1E1F',
-    card: '#1D1E1F',
-    text: '#ffffff',
-    border: '#ff06f4'
-  }
-}
+// const DarkTheme = {
+//   dark: true,
+//   colors: {
+//     primary: '#50E3C2',
+//     background: '#1D1E1F',
+//     card: '#1D1E1F',
+//     text: '#ffffff',
+//     border: '#ff06f4'
+//   }
+// }
 
-const LightTheme = {
-  dark: false,
-  colors: {
-    primary: '#ff06f4',
-    background: '#ffffff',
-    card: '#1D1E1F',
-    text: '#ffffff',
-    border: '#ff06f4'
-  }
-}
+// const LightTheme = {
+//   dark: false,
+//   colors: {
+//     primary: '#ff06f4',
+//     background: '#ffffff',
+//     card: '#1D1E1F',
+//     text: '#ffffff',
+//     border: '#ff06f4'
+//   }
+// }
 
-const MEMORY_KEY_PREFIX = '@MyStorage:'
-let dataMemory: any = {}
-class MyStorage {
-  static syncPromise = null
+// const MEMORY_KEY_PREFIX = '@MyStorage:'
+// let dataMemory: any = {}
+// class MyStorage {
+//   static syncPromise = null
 
-  static setItem(key: string, value: string): boolean {
-    Keychain.setGenericPassword(MEMORY_KEY_PREFIX + key, value)
-    dataMemory[key] = value
-    return dataMemory[key]
-  }
+//   static setItem(key: string, value: string): boolean {
+//     Keychain.setGenericPassword(MEMORY_KEY_PREFIX + key, value)
+//     dataMemory[key] = value
+//     return dataMemory[key]
+//   }
 
-  static getItem(key: string): boolean {
-    return Object.prototype.hasOwnProperty.call(dataMemory, key) ? dataMemory[key] : undefined
-  }
+//   static getItem(key: string): boolean {
+//     return Object.prototype.hasOwnProperty.call(dataMemory, key) ? dataMemory[key] : undefined
+//   }
 
-  static removeItem(key: string): boolean {
-    Keychain.resetGenericPassword()
-    return delete dataMemory[key]
-  }
+//   static removeItem(key: string): boolean {
+//     Keychain.resetGenericPassword()
+//     return delete dataMemory[key]
+//   }
 
-  static clear(): object {
-    dataMemory = {}
-    return dataMemory
-  }
-}
+//   static clear(): object {
+//     dataMemory = {}
+//     return dataMemory
+//   }
+// }
 
-Amplify.configure({
-  ...awsconfig,
-  Analytics: {
-    disabled: false
-  },
-  storage: MyStorage
-})
+// Amplify.configure({
+//   ...awsconfig,
+//   Analytics: {
+//     disabled: false
+//   },
+//   storage: MyStorage
+// })
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
