@@ -24,7 +24,7 @@ export type RootStackParamList = {
   Call: undefined;
   Confirm: undefined;
   GetStarted: undefined;
-  Modal: undefined;
+  // Camera: undefined;
   Groups: undefined;
   
 };

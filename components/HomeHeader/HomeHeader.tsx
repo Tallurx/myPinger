@@ -23,7 +23,7 @@ const HomeHeader = (props) => {
     return (
       <View>
         <View style={styles.title}>
-          <Text style={styles.text}>Messages</Text>
+          <Text style={styles.text}>Chats</Text>
           <Pressable 
             onPress = {onClick}>
             <Ionicons name="add-circle-outline" size={30} color={defcolor} />

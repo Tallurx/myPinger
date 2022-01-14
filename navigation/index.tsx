@@ -28,9 +28,11 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
-import SignUpScreen from '../screens/SignUpScreen';
-import SignInScreen from '../screens/SignInScreen';
+import SignUpScreen from '../screens/Authentication/SignUpScreen';
+import SignInScreen from '../screens/Authentication/SignInScreen';
 import ConfirmScreen from '../screens/Confirm';
+import ImageUpScreen from '../screens/Authentication/ImageUpScreen';
+import CameraScreen from '../screens/CameraScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -53,9 +55,10 @@ function RootNavigator() {
     <Stack.Navigator>
       {/* <Stack.Screen name="GetStarted" component={GetStartedScreen} options={{ headerShown: false,}}/>
       <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false,}}/>
-      <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false,}}/> */}
+      <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false,}}/>
       <Stack.Screen name="Confirm" component={ConfirmScreen} options={{ headerShown: false,}}/>
-      <Stack.Screen name="Done" component={DoneScreen} options={{ headerShown: false,}}/>
+      <Stack.Screen name="Upload" component={ImageUpScreen} options={{ headerShown: false,}}/> */}
+      {/* <Stack.Screen name="Done" component={DoneScreen} options={{ headerShown: false,}}/> */}
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{headerShown: false}}/>
       <Stack.Screen name="Calls" component={CallScreen} options={{ headerShown: false,}}/>
       <Stack.Screen name="Contacts" component={ContactScreen}/>
@@ -69,10 +72,11 @@ function RootNavigator() {
         })} 
       /> 
       <Stack.Screen name="Groups" component={TopTabNavigator} options={{ headerShown: false,}} />
+      <Stack.Screen name="Camera" component={CameraScreen} options={{ headerShown: false,}} />
       <Stack.Screen name="Call" component={myTabNavigator} options={{ headerShown: false,}} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
+      {/* <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>
+      </Stack.Group> */}
     </Stack.Navigator>
   );
 }
@@ -92,7 +96,7 @@ function BottomTabNavigator() {
     >
       <BottomTab.Screen
         name="Camera"
-        component={ModalScreen}
+        component={CameraScreen}
         options={{
           tabBarIcon: ({ color }) => 
           <Feather name="camera" size={30} color= {defcolor} 
@@ -142,7 +146,7 @@ function myTabNavigator() {
     >
       <myTab.Screen
         name="Camera"
-        component={ModalScreen}
+        component={CameraScreen}
         options={{
           tabBarIcon: ({ color }) => 
           <Feather name="camera" size={30} color= {defcolor} 
@@ -188,7 +192,7 @@ function TopTabNavigator() {
     >
       <TopTab.Screen
         name="Camera"
-        component={ModalScreen}
+        component={CameraScreen}
         options={{
           tabBarIcon: ({ color }) => 
           <Feather name="camera" size={30} color= {defcolor} 

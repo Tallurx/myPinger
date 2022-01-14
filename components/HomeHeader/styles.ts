@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
     },
     text: {flex: 1,
         color: defcolor,
-        fontSize: 35
+        fontSize: 35,
+        fontWeight: 'bold'
     },
     btn: {
         alignItems: 'center',

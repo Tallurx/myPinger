@@ -13,13 +13,15 @@ import {
   useWindowDimensions,
   TextInput,
 } from "react-native";
-import defcolor from "../constants/defcolor";
+import defcolor from "../../constants/defcolor";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const AuthScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const phoneInput = useRef<PhoneInput>(null);
+  const navigation = useNavigation();
 
   const onPress = () => {
     if (!email.trim()) {
@@ -30,7 +32,8 @@ const AuthScreen = () => {
       alert("Please enter Password");
       return;
     }
-    console.warn("Button pressed");
+    // console.warn("Button pressed");
+    navigation.navigate("Confirm")
   };
   return (
     <KeyboardAvoidingView style={styles.page}>
@@ -38,7 +41,7 @@ const AuthScreen = () => {
         <Ionicons
           name="chatbubble-outline"
           size={80}
-          color="white"
+          color= {defcolor}
           style={styles.icon}
         />
       </View>
@@ -46,7 +49,7 @@ const AuthScreen = () => {
         <Text style={styles.text1}>Welcome to Pingr</Text>
       </View>
       <View style={{ alignItems: "center", flex: 1 }}>
-        <View style={styles.emailcontainer}>
+        <View style={styles.emailcontainer} elevation={10}>
           <AntDesign
             name="user"
             size={24}
@@ -62,7 +65,7 @@ const AuthScreen = () => {
             autoFocus
           />
         </View>
-        <View style={styles.passwordcontainer}>
+        <View style={styles.passwordcontainer} elevation={10}>
           <Ionicons
             name="lock-closed-outline"
             size={24}
@@ -77,34 +80,34 @@ const AuthScreen = () => {
             secureTextEntry={true}
           />
         </View>
-
-        <PhoneInput
-          placeholder=" Enter your mobile number"
-          ref={phoneInput}
-          defaultValue={phoneNumber}
-          defaultCode="IN"
-          layout="second"
-          onChangeText={(text) => {
-            setPhoneNumber(text);
-          }}
-          disableArrowIcon={false}
-          containerStyle={styles.phoneContainer}
-          textContainerStyle={styles.textInput}
-          textInputStyle={{ color: "grey", fontSize: 17 }}
-          codeTextStyle={{ color: "grey", fontSize: 17 }}
-          // withDarkTheme
-          withShadow
-          // autoFocus
-        />
-
+        <View style={styles.passwordcontainer} elevation={10}>
+          <PhoneInput
+            placeholder=" Enter your mobile number"
+            ref={phoneInput}
+            defaultValue={phoneNumber}
+            defaultCode="IN"
+            layout="second"
+            onChangeText={(text) => {
+              setPhoneNumber(text);
+            }}
+            disableArrowIcon={false}
+            containerStyle={styles.phoneContainer}
+            textContainerStyle={styles.textInput}
+            textInputStyle={{ color: "grey", fontSize: 17 }}
+            codeTextStyle={{ color: "grey", fontSize: 17 }}
+            // withDarkTheme
+            withShadow
+            // autoFocus
+          />
+        </View>
         <Text style={styles.text4}>
-          Your will receive a verification code to this mobile number.
+          You will receive a verification code to this mobile number.
         </Text>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={onPress}>
-          <Text style={styles.text3} elevation={5}>Send Verification</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={onPress}>
+            <Text style={styles.text3} elevation={5}>Send Verification</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </KeyboardAvoidingView>
   );
@@ -113,13 +116,13 @@ export default AuthScreen;
 
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 50,
+    paddingTop: "10%",
     paddingHorizontal: 20,
-    backgroundColor: defcolor,
+    backgroundColor: "white",
     flex: 1,
   },
   layout: {
-    marginTop: 20,
+    marginTop: "2%",
     justifyContent: "center",
   },
   layout2: {
@@ -191,10 +194,11 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     alignItems: "center",
-    marginBottom: 20,
+    marginTop: "10%",
   },
   button: {
-    backgroundColor: "white",
+    position: "relative",
+    backgroundColor: defcolor,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 25,
@@ -202,7 +206,7 @@ const styles = StyleSheet.create({
     width: 320,
   },
   text1: {
-    color: "white",
+    color: defcolor,
     fontWeight: "bold",
     fontSize: 25,
   },
@@ -216,12 +220,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   text3: {
-    color: defcolor,
+    color: "white",
     fontWeight: "bold",
     fontSize: 20,
   },
   text4: {
+    marginTop: 5,
     fontWeight: "bold",
-    color: "white",
+    color: "grey",
   },
 });

@@ -13,19 +13,23 @@ import {
   useWindowDimensions,
   TextInput,
 } from "react-native";
-import defcolor from "../constants/defcolor";
+import defcolor from "../../constants/defcolor";
+// import Confirm from "../Confirm";
 
-const SignIn = () => {
+const SignIn = () => { 
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const phoneInput = useRef<PhoneInput>(null);
+
+  const navigation = useNavigation();
 
   const onPress = () => {
     if (!password.trim()) {
       alert("Please enter Password");
       return;
     }
-    console.warn("Button pressed");
+    // console.warn("Button pressed");
+    navigation.navigate('Confirm')
   };
   return (
     <KeyboardAvoidingView style={styles.page}>
@@ -33,7 +37,7 @@ const SignIn = () => {
         <Ionicons
           name="chatbubble-outline"
           size={80}
-          color="white"
+          color={defcolor}
           style={styles.icon}
         />
       </View>
@@ -41,25 +45,27 @@ const SignIn = () => {
         <Text style={styles.text1}>Login to Pingr</Text>
       </View>
       <View style={{ alignItems: "center", flex: 1 }}>
-        <PhoneInput
-          placeholder=" Enter your mobile number"
-          ref={phoneInput}
-          defaultValue={phoneNumber}
-          defaultCode="IN"
-          layout="second"
-          onChangeText={(text) => {
-            setPhoneNumber(text);
-          }}
-          disableArrowIcon={false}
-          containerStyle={styles.phoneContainer}
-          textContainerStyle={styles.textInput}
-          textInputStyle={{ color: "grey", fontSize: 17 }}
-          codeTextStyle={{ color: "grey", fontSize: 17 }}
-          // withDarkTheme
-          withShadow
-          autoFocus
-        />
-        <View style={styles.passwordcontainer}>
+        <View style={styles.passwordcontainer} elevation={10}>
+          <PhoneInput
+            placeholder=" Enter your mobile number"
+            ref={phoneInput}
+            defaultValue={phoneNumber}
+            defaultCode="IN"
+            layout="second"
+            onChangeText={(text) => {
+              setPhoneNumber(text);
+            }}
+            disableArrowIcon={false}
+            containerStyle={styles.phoneContainer}
+            textContainerStyle={styles.textInput}
+            textInputStyle={{ color: "grey", fontSize: 17 }}
+            codeTextStyle={{ color: "grey", fontSize: 17 }}
+            // withDarkTheme
+            withShadow = {false}
+            autoFocus
+          />
+        </View>
+        <View style={styles.passwordcontainer} elevation={10}>
           <Ionicons
             name="lock-closed-outline"
             size={24}
@@ -72,6 +78,7 @@ const SignIn = () => {
             onChangeText={setPassword}
             placeholder="Password"
             secureTextEntry={true}
+            
           />
         </View>
 
@@ -102,13 +109,13 @@ export default SignIn;
 
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 50,
+    paddingTop: "10%",
     paddingHorizontal: 20,
-    backgroundColor: defcolor,
+    backgroundColor: "white",
     flex: 1,
   },
   layout: {
-    marginTop: 20,
+    // marginTop: "1%",
     justifyContent: "center",
   },
   layout2: {
@@ -142,7 +149,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   phoneContainer: {
-    shadowOpacity: 10,
+    // shadowOpacity: 10,
     width: "100%",
     height: 50,
     alignItems: "center",
@@ -180,22 +187,22 @@ const styles = StyleSheet.create({
   },
   buttonContainer2: {
     marginTop: 10,
-    marginLeft: '68%',
+    marginLeft: '65%',
   },
   buttonContainer: {
     alignItems: "center",
     marginBottom: 20,
   },
   button2: {
-    backgroundColor: "white",
+    backgroundColor: defcolor,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 25,
+    borderRadius: 8,
     height: 30,
     width: 105,
   },
   button: {
-    backgroundColor: "white",
+    backgroundColor: defcolor,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 25,
@@ -203,7 +210,7 @@ const styles = StyleSheet.create({
     width: 320,
   },
   text1: {
-    color: "white",
+    color: defcolor,
     fontWeight: "bold",
     fontSize: 25,
   },
@@ -217,17 +224,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   text3i: {
-    color: defcolor,
+    color: "white",
     fontWeight: "bold",
     fontSize: 12,
   },
   text3: {
-    color: defcolor,
+    color: "white",
     fontWeight: "bold",
     fontSize: 20,
   },
   text4: {
     fontWeight: "bold",
-    color: "white",
+    color: defcolor,
   },
 });
